@@ -1,0 +1,38 @@
+Lab 9 – MSP430 Instruction Set/ Assembly Programming
+Q1. Write an assembly program to toggle a RED LED if a button is pressed. After running both C and
+assembly what is your observation?
+Hints:
+Steps1: You can use the following C code to convert in assembly:
+#include <msp430.h>
+#define RED_LED BIT0 //P1.0
+#define BUTTON BIT1 //push button P4.1
+void main(void)
+{
+WDTCTL = WDTPW | WDTHOLD;
+P1OUT &= ~BIT0; //p1.0 red led
+P1DIR |= BIT0;
+P4DIR &= ~BIT1;//clear P4.1(s1)
+P4REN |= BIT1;//Enable pull up/down resistor
+P4OUT |= BIT1;//Make resistor a pull up
+PM5CTL0 &= ~LOCKLPM5; // Disable the GPIO power-on default high impedance mode
+while(1){
+if((P4IN & BUTTON) == 0x02){
+P1OUT ^= RED_LED;
+}
+else
+P1OUT &= ~BIT0;
+}
+}
+Steps2: Go to the highlighted assembly code of the resource explorer section and modify it according to
+your needs.
+Q2: Write an assembly program for the following specifications.
+Assume that your register R4 holds the hexadecimal number 4100h and the memory location 20F2h
+holds the hexadecimal number 0E19h. Write a program in assembly language such that:
+a. These two numbers are added.
+b. One’s complement of the sum is saved in register R6.
+c. The least significant two hexadecimal digits of the sum are swapped with its most significant two
+hexadecimal digits.
+D. The output is written to register R7.
+Submission Instructions:
+Word/pdf file = Add a screenshot of your code of CCS in debugging mode, displaying the final result in
+the register where you stored the value.
