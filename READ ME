@@ -1,6 +1,9 @@
 Lab 9 – MSP430 Instruction Set/ Assembly Programming
 Q1. Write an assembly program to toggle a RED LED if a button is pressed. After running both C and
 assembly what is your observation?
+
+A: C is more Software, where assembly is Hardware, It seems like assembly is more work to set up, but I can see how it is practical
+
 Hints:
 Steps1: You can use the following C code to convert in assembly:
 #include <msp430.h>
